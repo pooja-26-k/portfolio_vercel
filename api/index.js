@@ -114,4 +114,7 @@ app.delete('/contact/delete/:id', async (req, res) => {
     }
 });
 
+app.get('/test', (req, res) => {
+  res.send('TEST WORKS');
+});
 module.exports = app;
