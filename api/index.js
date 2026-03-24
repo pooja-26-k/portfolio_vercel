@@ -1,6 +1,7 @@
 // //Before adding setservers it does not get connected to mongodb due to dns issue
 // const { setServers } = require('dns/promises');
 // setServers(['1.1.1.1', '8.8.8.8']);
+console.log('API FILE LOADED');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
