@@ -5,10 +5,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
+const rootDir = process.cwd();
 require('dotenv').config();
+app.set('views', path.join(rootDir, 'views'));
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
-app.use(express.static(path.join(__dirname, '../public')));
+// app.set('views', path.join(__dirname, '../views'));
+app.use(express.static(path.join(rootDir, 'public')));
 // app.set('views', path.join(__dirname, '../views'));
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // Parse form data
