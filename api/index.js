@@ -14,10 +14,10 @@ app.use(express.static(path.join(rootDir, 'public')));
 // app.set('views', path.join(__dirname, '../views'));
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // Parse form data
-app.use((req, res, next) => {
-  console.log('Incoming request:', req.url);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('Incoming request:', req.url);
+//   next();
+// });
 // app.use(express.static('public'));
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -45,13 +45,13 @@ const contactSchema = new mongoose.Schema({
 const Contact = mongoose.model('Contact', contactSchema);
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('WORKING');
-});
-// app.get('/', async (req, res) => {
-//     const data = await StringData.findOne(); // Get data from db
-//     res.render('index', { ej_data: data });     // ej_data Send data to EJS
+// app.get('/', (req, res) => {
+//   res.send('WORKING');
 // });
+app.get('/', async (req, res) => {
+    const data = await StringData.findOne(); // Get data from db
+    res.render('index', { ej_data: data });     // ej_data Send data to EJS
+});
 
 // CREATE - Submit contact form
 app.post('/contact/submit', async (req, res) => {
