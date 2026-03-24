@@ -1,16 +1,18 @@
-//Before adding setservers it does not get connected to mongodb due to dns issue
-const { setServers } = require('dns/promises');
-setServers(['1.1.1.1', '8.8.8.8']);
+// //Before adding setservers it does not get connected to mongodb due to dns issue
+// const { setServers } = require('dns/promises');
+// setServers(['1.1.1.1', '8.8.8.8']);
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
 require('dotenv').config();
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
+app.use(express.static(path.join(__dirname, '../public')));
+// app.set('views', path.join(__dirname, '../views'));
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // Parse form data
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 mongoose.connect(process.env.MONGO_URI, {
     serverSelectionTimeoutMS: 5000
