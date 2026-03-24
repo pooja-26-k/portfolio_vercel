@@ -1,0 +1,159 @@
+body {
+    columns: #40514e;
+    margin: 0px;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    background-color: #e4f9f5;
+}
+
+ul li {
+    display: inline-block;
+    padding: 1rem;
+}
+
+.nav-anchor {
+    font-family: cursive;
+    text-decoration: none !important;
+    color:#66bfbf;
+}
+
+.nav-anchor:hover {
+    color: #aaaaaa;
+}
+
+@keyframes slideInFromtop {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.navbar {
+    animation: 1s ease-out 0s 1 slideInFromtop;
+}
+
+h1 {
+    line-height: 2;
+    color: #66bfbf;
+    font-size: 562.5%;
+    font-family: 'Sacramento', cursive;
+    margin-top: 312.5% auto 0 auto;
+}
+
+p {
+    line-height: 2;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+hr {
+    border: dotted #eaf6f6 6px;
+    border-bottom: none;
+    width: 4%;
+    margin: 100px auto;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 2.5rem;
+    color: #66bfbf;
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #11999e;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.top-container {
+    width: 100%;
+    background-color: #e4f9f5;
+    position: relative;
+    padding-top: 100px;
+}
+#mountain{
+    width: 570px;
+}
+.profile {
+    margin-top: 1%;
+    border-radius: 60%;
+}
+
+.skill-row {
+    width: 50%;
+    margin: 100px auto 100px auto;
+    text-align: left;
+    line-height: 2;
+}
+
+.skill-img1 {
+    margin-right: 30px;
+    border-radius: 60%;
+    width: 25%;
+    float: left;
+}
+
+.skill-img2 {
+    float: right;
+    margin-right: 30px;
+    border-radius: 60%;
+    width: 25%;
+}
+
+.top-cloud {
+    position: absolute;
+    right: 300px;
+    top: 40px;
+}
+
+.bot-cloud {
+    position: absolute;
+    left: 250px;
+    bottom: 300px;
+}
+
+.middle-container {
+    margin: 100px 0
+}
+
+.bottom-container {
+    background-color: #66bfbf;
+    padding: 50px 0 20px;
+}
+
+.bottom-container a {
+    text-decoration: none;
+}
+
+a {
+    margin: 10px 20px;
+    color: #11999e;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a:hover {
+    color: #eaf6f6;
+}
+
+.copywrtie {
+    color: #eaf6f6;
+    font-size: 0.75rem;
+    padding: 20px 0px;
+}
+@media only screen and (max-width: 1000px) {
+    .bot-cloud{
+        top: 424px;
+        left: auto;
+    }
+    .navbar{
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}

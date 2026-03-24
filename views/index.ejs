@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icon.png">
+     <script src="js.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
+    <!-- <link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
+</head>
+
+<body>
+    <div class="top-container">
+          <div class="nav navbar">
+        <ul class="ul">
+          <a href="javascript:myFunction1()"  class="nav-anchor">
+            <li>About</li>
+          </a>
+          <a href="javascript:myFunction2()"  class="nav-anchor">
+            <li>Contact</li>
+         </a>
+            <a href="#"  class="nav-anchor">
+            <li>Projects</li>
+         </a>
+       </ul>
+    </div>
+        <img class="top-cloud" src="images/cloud.png" alt="imagine clouds">
+        <h1>I'am Pooja.</h1>
+        <h2>A Student</h2>
+        <img class="bot-cloud" src="images/cloud.png" alt="imagine clouds">
+        <img src="images/mountain.png" alt="imagine mountains">
+    </div>
+    <div class="middle-container" id="mid">
+        <div class="profile">
+            <img class="profile" src="images/icon.png" alt="profile" height="200px" width="200px">
+            <h2>Hello.</h2>
+            <p style="width:30%; margin:auto;"><%= ej_data.intro %></p>
+        </div>
+        <hr>
+        <div class="skills">
+            <h2>My Skills.</h2>
+            <div class="skill-row">
+                <img class=" skill-img1" src="images/computer.png" alt="">
+                <h3>Design & development</h3>
+                <p><%= ej_data.skills %></p>
+            </div>
+            <div class="skill-row">
+                <img class="skill-img2" src="images/chillies.png" alt="image">
+                <h3>Hobbies</h3>
+                <p><%= ej_data.hobbies %></p>
+            </div>
+        </div>
+        <hr>
+                <!-- CONTACT FORM SECTION -->
+        <div class="contact-me" id="contact-section">
+            <h2>Get In Touch</h2>
+            <h3>Would love to talk about current technology trends.</h3>
+            
+            <div style="max-width: 500px; margin: 40px auto;">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <div id="formMessage" style="margin-top: 20px;"></div>
+            </div>
+        </div>
+    </div>
+        <div class="contact-me">
+            <a class="btn btn-primary" href="mailto: #">CONTACT ME</a>
+        </div>
+    </div>
+
+
+    <div class="bottom-container" id="bot">
+        <a class="footer-link" href="#">LinkedIn</a>
+        <a class="footer-link" href="https://twitter.com/">Twitter</a>
+        <a class="footer-link" href="/admin">Admin</a>
+        <a class="footer-link" href="">Website</a>
+        <p class="copywrtie">© 2026 myCompany.co.</p>
+    </div>
+    
+        <!-- // Handle contact form submission -->
+        <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        // LOG 1: See the individual values
+        console.log('Name:', name);
+        console.log('Email:', email);
+        console.log('Message:', message);
+        
+        // LOG 2: See the object being sent
+        const dataToSend = { name, email, message };
+        console.log('Data to send:', dataToSend);
+        
+        // LOG 3: See the JSON string
+        console.log('JSON string:', JSON.stringify(dataToSend));
+        
+        fetch('/contact/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message })
+        })
+        .then(response => {
+            console.log('Response status:', response.status); // LOG 4: HTTP status
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data); // LOG 5: Server response
+            
+            const messageDiv = document.getElementById('formMessage');
+            if (data.success) {
+                messageDiv.innerHTML = '<div class="alert alert-success">Message sent successfully!</div>';
+                document.getElementById('contactForm').reset();
+            } else {
+                messageDiv.innerHTML = '<div class="alert alert-danger">Error sending message. Please try again.</div>';
+            }
+        })
+        .catch(err => {
+            console.error('Error:', err);
+            document.getElementById('formMessage').innerHTML = '<div class="alert alert-danger">Error sending message.</div>';
+        });
+    });
+</script>
+     
+</body>
+
+</html>
