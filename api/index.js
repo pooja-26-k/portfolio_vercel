@@ -25,7 +25,6 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('MongoDB Connected!'))
 .catch(err => console.log('Connection error:', err));
 
-console.log('MONGO_URI:', process.env.MONGO_URI);
 // Schema for getting data from db
 const stringSchema = new mongoose.Schema({
     intro: String,
