@@ -44,13 +44,11 @@ const contactSchema = new mongoose.Schema({
 const Contact = mongoose.model('Contact', contactSchema);
 
 // Routes
-app.get('/', (req, res) => {
-  res.send('WORKING');
+
+app.get('/', async (req, res) => {
+    const data = await StringData.findOne(); // Get data from db
+    res.render('index', { ej_data: data });     // ej_data Send data to EJS
 });
-// app.get('/', async (req, res) => {
-//     const data = await StringData.findOne(); // Get data from db
-//     res.render('index', { ej_data: data });     // ej_data Send data to EJS
-// });
 
 // CREATE - Submit contact form
 app.post('/contact/submit', async (req, res) => {
