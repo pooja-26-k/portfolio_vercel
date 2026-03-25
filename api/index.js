@@ -4,10 +4,7 @@ const path = require('path');
 require('dotenv').config();
 
 const app = express();
-
-/* =========================
-   MIDDLEWARE
-========================= */
+   // *******************MIDDLEWARE
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
@@ -15,9 +12,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/* =========================
-   DB CONNECTION (CACHED)
-========================= */
+// DB CONNECTION (CACHED)
 let cached = global.mongoose;
 
 if (!cached) {
@@ -39,10 +34,7 @@ const connectDB = async () => {
   cached.conn = await cached.promise;
   return cached.conn;
 };
-
-/* =========================
-   MODELS
-========================= */
+   // *******************MODELS
 const stringSchema = new mongoose.Schema({
   intro: String,
   skills: String,
@@ -61,10 +53,7 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema);
 
-/* =========================
-   ROUTES
-========================= */
-
+// *******************Routing
 // Home
 app.get('/', async (req, res) => {
   try {
@@ -154,7 +143,4 @@ app.delete('/contact/delete/:id', async (req, res) => {
   }
 });
 
-/* =========================
-   EXPORT (IMPORTANT)
-========================= */
 module.exports = app;
